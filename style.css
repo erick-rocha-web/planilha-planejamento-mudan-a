@@ -1,0 +1,231 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* BODY */
+body {
+    background-color: #0f172a;
+    color: #e2e8f0;
+    padding: 16px;
+}
+
+/* HEADER */
+header {
+    background: linear-gradient(135deg, #1e293b, #334155);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+header p {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+header div {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+/* SECTIONS */
+section {
+    background: #1e293b;
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+/* TITLES */
+h2 {
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+/* RESUMO */
+section div p {
+    margin-bottom: 6px;
+}
+
+/* NAV */
+nav {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+nav button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #334155;
+    color: #e2e8f0;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+nav button:hover {
+    background: #475569;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #334155;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+}
+
+tbody tr {
+    border-bottom: 1px solid #334155;
+}
+
+tbody tr:hover {
+    background: #293548;
+}
+
+/* STATUS (futuro JS) */
+.status-pago {
+    color: #22c55e;
+}
+
+.status-pendente {
+    color: #f59e0b;
+}
+
+/* FORM */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+}
+
+input,
+select {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #0f172a;
+    color: #e2e8f0;
+}
+
+button[type="submit"] {
+    margin-top: 10px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #22c55e;
+    color: #0f172a;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button[type="submit"]:hover {
+    background: #16a34a;
+}
+
+/* LISTA PLANEJAMENTO */
+#lista-planejamento {
+    list-style: none;
+}
+
+#lista-planejamento li {
+    padding: 10px;
+    background: #0f172a;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    font-size: 12px;
+    opacity: 0.6;
+}
+
+/* 📱 MOBILE FIRST AJUSTES */
+@media (max-width: 600px) {
+
+    header div {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    nav {
+        flex-direction: column;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th,
+    td {
+        padding: 6px;
+    }
+}
+
+/* 💻 DESKTOP */
+@media (min-width: 768px) {
+
+    body {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    header div {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    section {
+        padding: 20px;
+    }
+
+    form {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    form div {
+        flex: 1;
+        min-width: 150px;
+    }
+
+    button[type="submit"] {
+        flex: 1;
+    }
+}
