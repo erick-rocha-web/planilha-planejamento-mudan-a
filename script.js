@@ -42,6 +42,8 @@ form.addEventListener("submit", function (e) {
 
     despesas.push(novaDespesa)
 
+    salvarDados()
+
     renderizarTabela()
     atualizarResumo()
     limparFormulario()
@@ -60,7 +62,7 @@ function renderizarTabela() {
         tr.innerHTML = `
       <td>${item.nome}</td>
       <td>${item.categoria}</td>
-      <td>R$ ${item.valor.toFixed(2)}</td>
+      <td>${formatarMoeda(item.valor)}</td>
       <td class="${item.pago ? 'status-pago' : 'status-pendente'}">
         ${item.pago ? 'Pago' : 'Pendente'}
       </td>
@@ -84,6 +86,8 @@ function togglePago(id) {
 
     item.pago = !item.pago
 
+    salvarDados()
+
     renderizarTabela()
     atualizarResumo()
 }
@@ -93,6 +97,8 @@ function removerItem(id) {
     if (index === -1) return
 
     despesas.splice(index, 1)
+
+    salvarDados()
 
     renderizarTabela()
     atualizarResumo()
@@ -113,9 +119,9 @@ function atualizarResumo() {
 
     const restante = totalPlanejado - totalGasto
 
-    totalPlanejadoEl.textContent = totalPlanejado.toFixed(2)
-    totalGastoEl.textContent = totalGasto.toFixed(2)
-    totalRestanteEl.textContent = restante.toFixed(2)
+    totalPlanejadoEl.textContent = formatarMoeda(totalPlanejado)
+    totalGastoEl.textContent = formatarMoeda(totalGasto)
+    totalRestanteEl.textContent = formatarMoeda(restante)
 }
 
 // ========================
@@ -125,4 +131,39 @@ function atualizarResumo() {
 function limparFormulario() {
     nomeInput.value = ""
     valorInput.value = ""
+    categoriaInput.value = "fixa"
 }
+
+function formatarMoeda(valor) {
+    return valor.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    })
+}
+
+// ========================
+// LOCAL STORAGE
+// ========================
+
+function salvarDados() {
+    localStorage.setItem("despesas", JSON.stringify(despesas))
+}
+
+function carregarDados() {
+    const dados = localStorage.getItem("despesas")
+
+    if (dados) {
+        const lista = JSON.parse(dados)
+
+        despesas.length = 0
+        despesas.push(...lista)
+    }
+}
+
+// ========================
+// INICIALIZAÇÃO
+// ========================
+
+carregarDados()
+renderizarTabela()
+atualizarResumo()
